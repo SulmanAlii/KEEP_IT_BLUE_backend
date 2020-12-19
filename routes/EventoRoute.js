@@ -42,7 +42,6 @@ router.post("/evento", (req, res) => {
         }
 
         const newEvento = {
-            
             nomEvent: req.body.nomEvent,
             nomPersona: req.body.nomPersona,
             descripcioEvent: req.body.descripcioEvent,

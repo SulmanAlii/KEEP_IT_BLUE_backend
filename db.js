@@ -1,3 +1,4 @@
+require('dotenv').config()
 const Sequelize = require('sequelize');
 const opinion = require('./models/opinion');
 const comarca = require('./models/comarca');
@@ -8,7 +9,7 @@ const evento = require('./models/evento')
 
 
 
-const sequelize = new Sequelize('c1kvn8eus4qw17m0','a3w168m4v7cwuwlo','bvjrcjjyoma3dem8', {
+const sequelize = new Sequelize('c1kvn8eus4qw17m0',process.env.DB_USERNAME,process.env.DB_PASSWORD, {
     host : 'cvktne7b4wbj4ks1.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
     dialect: 'mysql'
 })

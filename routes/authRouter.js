@@ -1,3 +1,4 @@
+require('dotenv').config()
 const app = require('express');
 const bycrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -30,7 +31,7 @@ router.post('/signup' , (req,res) => {
 
         users.create(req.body)
         .then((user) => {
-            jwt.sign({id : user.id}, 'mypersonalsecretkey', {expiresIn : "10h"}, (err,token) => {
+            jwt.sign({id : user.id}, process.env.SECRET_KEY, {expiresIn : "10h"}, (err,token) => {
                 res.json({
                     token : token,
                 user : {
@@ -67,7 +68,7 @@ router.post('/login', (req,res) => {
        bycrypt.compare(password, user.password)
        .then(password => {if(!password) return res.status(400).json({msg : "La contraseña es incorrecta"});
 
-           jwt.sign({id : user.id},'mypersonalsecretkey',{expiresIn : "10h"},(err,token) => {
+           jwt.sign({id : user.id},process.env.SECRET_KEY,{expiresIn : "10h"},(err,token) => {
                res.json({
                 token: token,
                 user : {
